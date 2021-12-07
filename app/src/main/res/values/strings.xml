@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">PlanitPK</string>
+
+    <!-- Strings for Onboarding Screens -->
+
+    <!-- Titles -->
+    <string name="first_slide_title">Plan Your Own Journeys</string>
+    <string name="second_slide_title">Create and Share Your Experiences</string>
+    <string name="third_slide_title">Explore the Beauty of Pakistan</string>
+    <string name="fourth_slide_title">Let Us Be Your Guide!</string>
+
+    <!-- Descriptions -->
+    <string name="first_slide_desc">Selecting multiple destinations, choosing the type of transport,
+        finding suitable accommodation, planning activities to do on your trip - all in one place!</string>
+    <string name="second_slide_desc">Create stories about your trips via personalized photo albums
+        and be aware of the latest news in the travel community</string>
+    <string name="third_slide_desc">There\'s a whole world of opportunities waiting just for you!
+        Grab your essentials and hit the road!</string>
+    <string name="fourth_slide_desc">Explore PlanitPK and get extra features with registration</string>
+
+    <!-- Buttons -->
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next</string>
+    <string name="get_started_btn">Get Started!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

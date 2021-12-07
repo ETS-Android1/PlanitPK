@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    android:padding="10dp"
+    tools:context=".LocationDetails">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/off_white"
+            app:cardCornerRadius="90dp">
+
+            <ImageView
+                android:id="@+id/backPress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            app:cardBackgroundColor="@color/off_white"
+            app:cardCornerRadius="90dp">
+
+            <ImageView
+                android:id="@+id/favoriteLocation"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_favorite_border_24"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/dots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="340dp"
+        android:orientation="horizontal" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayout2">
+
+        <TextView
+            android:id="@+id/txtLocationName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="#0fffffff"
+            android:backgroundTint="#0fffffff"
+            android:fontFamily="@font/bungee"
+            android:maxLines="2"
+            android:text="Location Name"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/locationRating"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/txtLocationName"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_stars_24"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/txtLocationRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/locationRating"
+            android:fontFamily="@font/poppins"
+            android:text="4.5"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtlocationCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayout3"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/poppins"
+        android:hint="Category"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <kr.co.prnd.readmore.ReadMoreTextView
+        android:id="@+id/txtlocationDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtlocationCategory"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/poppins"
+        android:hint="Description"
+        android:justificationMode="inter_word"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:readMoreColor="@color/theme_green"
+        app:readMoreMaxLine="5"
+        app:readMoreText="...Read More" />
+
+    <RelativeLayout
+        android:id="@+id/locationButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnAddToTrip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="2"
+                android:background="@drawable/round_corners"
+                android:drawableEnd="@drawable/ic_baseline_add_24"
+                android:text="Add To Trip"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnRateLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/round_corners"
+                android:drawableEnd="@drawable/ic_baseline_edit_location_alt_24"
+                android:text="Rate"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
