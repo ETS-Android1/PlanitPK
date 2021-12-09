@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class LocationDetails extends AppCompatActivity {
+public class LocationDetails extends AppCompatActivity implements RatingDialog.RatingDialogListener {
 
     //Variables
     ViewPager viewPager;
@@ -75,7 +75,7 @@ public class LocationDetails extends AppCompatActivity {
         btnRateLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setLocationRating();
+                callRatingDialog();
             }
         });
 
@@ -124,9 +124,13 @@ public class LocationDetails extends AppCompatActivity {
         });
     }
 
-    private void setLocationRating() {
+    private void callRatingDialog() {
         RatingDialog ratingDialog = new RatingDialog();
         ratingDialog.show(getSupportFragmentManager(), "Rating Dialog");
+    }
+
+    public String sendLocationName() {
+        return getIntent().getStringExtra("location_name");
     }
 
     private void addDots(int position) {
@@ -146,5 +150,10 @@ public class LocationDetails extends AppCompatActivity {
             dots[position].setTextColor(getResources().getColor(R.color.white));
         }
 
+    }
+
+    @Override
+    public void setRating(int newRating) {
+        reference.child(txtLocationName.getText().toString()).child("rating").setValue(String.valueOf(newRating));
     }
 }
