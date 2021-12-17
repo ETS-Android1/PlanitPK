@@ -63,6 +63,7 @@ public class Search extends AppCompatActivity {
                     .putExtra("location_name", locations.get(position).getName())
                     .putExtra("location_category", locations.get(position).getCategory())
                     .putExtra("location_description", locations.get(position).getDesc())
+                    .putExtra("location_rating", locations.get(position).getRating())
                     .putExtra("img1", locations.get(position).getImages().getLink1())
                     .putExtra("img2", locations.get(position).getImages().getLink2())
                     .putExtra("img3", locations.get(position).getImages().getLink3()));
@@ -80,12 +81,15 @@ public class Search extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.explore:
                         startActivity(new Intent(getApplicationContext(), Explore.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.plan:
                         startActivity(new Intent(getApplicationContext(), PlanTour.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(), Account.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                 }
                 return false;

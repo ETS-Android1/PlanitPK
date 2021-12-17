@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
+    android:background="@drawable/gradient_main"
     tools:context=".Search">
 
     <RelativeLayout
@@ -36,24 +36,69 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_field"
+
+    <RelativeLayout
+        android:id="@+id/layoutSearchBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:layout_below="@id/exploreMsg"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/search_bar"
-        app:iconifiedByDefault="false"
-        app:queryBackground="@android:color/transparent"
-        app:queryHint="Search for places, categories etc..." />
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="10dp">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_field"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@id/btnSearchFilters"
+            android:background="@drawable/search_bar"
+            android:elevation="2dp"
+            android:theme="@style/AppSearchView"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search for places, categories etc..." />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/filterBadge"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignTop="@id/btnSearchFilters"
+            android:layout_alignEnd="@id/btnSearchFilters"
+            android:elevation="10dp"
+            android:src="@color/redPrimary"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSearchFilters"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@id/search_field"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:backgroundTint="@color/green_light"
+            app:icon="@drawable/icon_filter"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
+            app:iconTint="@color/colorPrimaryDark"
+            app:rippleColor="@color/rippleColor"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
+
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottom_Navigation"
-        android:layout_below="@id/search_field"
+        android:layout_below="@id/layoutSearchBar"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 

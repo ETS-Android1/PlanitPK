@@ -56,7 +56,7 @@ public class RatingDialog extends AppCompatDialogFragment {
             public void onClick(View view) {
                 if (!ratingOne.isSelected() && !ratingTwo.isSelected() && !ratingThree.isSelected()
                         && !ratingFour.isSelected() && !ratingFive.isSelected()) {
-                    ratingOne.setImageResource(R.drawable.ic_baseline_star_24);
+                    ratingOne.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                     ratingOne.setSelected(true);
                     rating = 1;
                 } else {
@@ -74,8 +74,8 @@ public class RatingDialog extends AppCompatDialogFragment {
             public void onClick(View view) {
                 if (!ratingTwo.isSelected() && !ratingThree.isSelected()
                         && !ratingFour.isSelected() && !ratingFive.isSelected()) {
-                    ratingOne.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_24);
+                    ratingOne.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                     ratingOne.setSelected(true);
                     ratingTwo.setSelected(true);
                     rating = 2;
@@ -96,9 +96,9 @@ public class RatingDialog extends AppCompatDialogFragment {
             public void onClick(View view) {
                 if (!ratingThree.isSelected() && !ratingFour.isSelected()
                         && !ratingFive.isSelected()) {
-                    ratingOne.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingThree.setImageResource(R.drawable.ic_baseline_star_24);
+                    ratingOne.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingThree.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                     ratingOne.setSelected(true);
                     ratingTwo.setSelected(true);
                     ratingThree.setSelected(true);
@@ -121,10 +121,10 @@ public class RatingDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(View view) {
                 if (!ratingFour.isSelected() && !ratingFive.isSelected()) {
-                    ratingOne.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingThree.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingFour.setImageResource(R.drawable.ic_baseline_star_24);
+                    ratingOne.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingThree.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingFour.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                     ratingOne.setSelected(true);
                     ratingTwo.setSelected(true);
                     ratingThree.setSelected(true);
@@ -150,11 +150,11 @@ public class RatingDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(View view) {
                 if (!ratingFive.isSelected()) {
-                    ratingOne.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingThree.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingFour.setImageResource(R.drawable.ic_baseline_star_24);
-                    ratingFive.setImageResource(R.drawable.ic_baseline_star_24);
+                    ratingOne.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingTwo.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingThree.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingFour.setImageResource(R.drawable.ic_baseline_star_yellow_24);
+                    ratingFive.setImageResource(R.drawable.ic_baseline_star_yellow_24);
                     ratingOne.setSelected(true);
                     ratingTwo.setSelected(true);
                     ratingThree.setSelected(true);

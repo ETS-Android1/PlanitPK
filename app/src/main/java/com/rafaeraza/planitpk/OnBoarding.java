@@ -42,7 +42,7 @@ public class OnBoarding extends AppCompatActivity {
             finish();
         }
 
-        fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_slow);
 
         //Hooks
         viewPager = findViewById(R.id.slider);
@@ -120,7 +120,7 @@ public class OnBoarding extends AppCompatActivity {
         }
 
         if (dots.length > 0) {
-            dots[position].setTextColor(getResources().getColor(R.color.white));
+            dots[position].setTextColor(getResources().getColor(R.color.green_primary));
         }
 
     }

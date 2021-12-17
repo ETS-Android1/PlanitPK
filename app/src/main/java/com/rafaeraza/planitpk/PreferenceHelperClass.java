@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class PreferenceHelperClass {
     ArrayList<String> categories, districts, activities;
+    String favorites;
 
     public PreferenceHelperClass() {
     }
 
-    public PreferenceHelperClass(ArrayList<String> categories, ArrayList<String> districts, ArrayList<String> activities) {
+    public PreferenceHelperClass(ArrayList<String> categories, ArrayList<String> districts, ArrayList<String> activities, String favorites) {
         this.categories = categories;
         this.districts = districts;
         this.activities = activities;
+        this.favorites = favorites;
     }
 
     public ArrayList<String> getCategories() {
@@ -36,5 +38,13 @@ public class PreferenceHelperClass {
 
     public void setActivities(ArrayList<String> activities) {
         this.activities = activities;
+    }
+
+    public String getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(String favorites) {
+        this.favorites = favorites;
     }
 }

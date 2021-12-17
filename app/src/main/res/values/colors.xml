@@ -9,4 +9,24 @@
     <color name="white">#FFFFFFFF</color>
     <color name="theme_green">#4aba5d</color>
     <color name="off_white">#F9F6EE</color>
+
+    <color name="green_primary">#00CA6B</color>
+    <color name="green_dark">#01AA5A</color>
+
+    <color name="colorPrimary">@color/green_primary</color>
+    <color name="colorAccent">#ACEDCF</color>
+    <color name="green_light">#DCFBEE</color>
+
+
+    <color name="redPrimary">#EC2C43</color>
+    <color name="redAccent">#FED3D7</color>
+
+
+    <color name="colorPrimaryDark">#222222</color>
+    <color name="colorBottomNavNot">#444444</color>
+    <color name="textLight">#747481</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="rippleColor">#26000000</color>
+
+    <color name="loadingColorBG">#405A5A5A</color>
 </resources>

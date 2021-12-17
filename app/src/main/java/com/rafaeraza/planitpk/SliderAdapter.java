@@ -21,10 +21,10 @@ public class SliderAdapter extends PagerAdapter {
     }
 
     int[] images = {
-            R.drawable.wall1,
-            R.drawable.wall2,
-            R.drawable.wall3,
-            R.drawable.wall4
+            R.drawable.navigator,
+            R.drawable.share_social,
+            R.drawable.adventure_map,
+            R.drawable.travelers_illustration
     };
 
     int[] titles = {

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ public class ForgotPassword extends AppCompatActivity {
     ImageView imgBackPress;
     TextInputLayout inputEmail;
     Button resetPwdBtn;
+    TextView signUpHint;
 
     ProgressBar progressBar;
 
@@ -43,6 +45,10 @@ public class ForgotPassword extends AppCompatActivity {
                 finish();
             }
         });
+
+        signUpHint = findViewById(R.id.txtSignUpHint);
+        String htmlString="<u>New User? Sign Up</u>";
+        signUpHint.setText(Html.fromHtml(htmlString));
 
         inputEmail = findViewById(R.id.inputEmail);
         resetPwdBtn = findViewById(R.id.resetPwdBtn);

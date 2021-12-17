@@ -51,6 +51,7 @@ public class CategoryDetails extends AppCompatActivity {
                     .putExtra("location_name", locations.get(position).getName())
                     .putExtra("location_category", locations.get(position).getCategory())
                     .putExtra("location_description", locations.get(position).getDesc())
+                    .putExtra("location_rating", locations.get(position).getRating())
                     .putExtra("img1", locations.get(position).getImages().getLink1())
                     .putExtra("img2", locations.get(position).getImages().getLink2())
                     .putExtra("img3", locations.get(position).getImages().getLink3()));

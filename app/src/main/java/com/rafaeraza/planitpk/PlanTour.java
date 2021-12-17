@@ -28,12 +28,15 @@ public class PlanTour extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.explore:
                         startActivity(new Intent(getApplicationContext(), Explore.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.search:
                         startActivity(new Intent(getApplicationContext(), Search.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(), Account.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                 }
                 return false;

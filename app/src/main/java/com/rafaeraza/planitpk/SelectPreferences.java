@@ -35,6 +35,7 @@ public class SelectPreferences extends AppCompatActivity {
     Button continueBtn;
 
     private ArrayList<String> preferredCategories, preferredDistricts, preferredActivities;
+    private String favoriteLocations = "";
 
     private PreferenceHelperClass preferencesList;
 
@@ -402,7 +403,8 @@ public class SelectPreferences extends AppCompatActivity {
         });
 
         preferredCategories = getIntent().getStringArrayListExtra("preferred_categories");
-        preferencesList = new PreferenceHelperClass(preferredCategories, preferredDistricts, preferredActivities);
+        preferencesList = new PreferenceHelperClass(preferredCategories, preferredDistricts,
+                preferredActivities, favoriteLocations);
 
         continueBtn = findViewById(R.id.confirmBtn);
         continueBtn.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,13 +31,15 @@ public class SelectInterests extends AppCompatActivity {
 
     private ArrayList<String> preferredCategories;
 
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Locations");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_interests);
 
         //Animation
-        fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_slow);
 
         preferredCategories = new ArrayList<>();
 
@@ -239,6 +244,75 @@ public class SelectInterests extends AppCompatActivity {
                     imgMosques.setImageDrawable(getResources().getDrawable(R.drawable.nature));
                     txtMosques.setTextColor(getResources().getColor(R.color.cardview_dark_background));
                     imgMosques.setSelected(false);
+
+                }
+            }
+        });
+
+        imgMountainous= findViewById(R.id.imgMountainous);
+        txtMountainous = findViewById(R.id.txtMountainous);
+        imgMountainous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (preferredCategories.size() <= 14 && ! imgMountainous.isSelected())
+                {
+                    preferredCategories.add(txtMountainous.getText().toString());
+                    imgMountainous.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_check_circle_outline_24));
+                    imgMountainous.setAnimation(fadeIn);
+                    txtMountainous.setTextColor(getResources().getColor(R.color.theme_green));
+                    imgMountainous.setSelected(true);
+
+                } else {
+                    preferredCategories.remove(txtMountainous.getText().toString());
+                    imgMountainous.setImageDrawable(getResources().getDrawable(R.drawable.nature));
+                    txtMountainous.setTextColor(getResources().getColor(R.color.cardview_dark_background));
+                    imgMountainous.setSelected(false);
+
+                }
+            }
+        });
+
+        imgMuseums= findViewById(R.id.imgMuseums);
+        txtMuseums = findViewById(R.id.txtMuseums);
+        imgMuseums.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (preferredCategories.size() <= 14 && ! imgMuseums.isSelected())
+                {
+                    preferredCategories.add(txtMuseums.getText().toString());
+                    imgMuseums.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_check_circle_outline_24));
+                    imgMuseums.setAnimation(fadeIn);
+                    txtMuseums.setTextColor(getResources().getColor(R.color.theme_green));
+                    imgMuseums.setSelected(true);
+
+                } else {
+                    preferredCategories.remove(txtMuseums.getText().toString());
+                    imgMuseums.setImageDrawable(getResources().getDrawable(R.drawable.nature));
+                    txtMuseums.setTextColor(getResources().getColor(R.color.cardview_dark_background));
+                    imgMuseums.setSelected(false);
+
+                }
+            }
+        });
+
+        imgNationalParks= findViewById(R.id.imgNationalParks);
+        txtNationalParks = findViewById(R.id.txtNationalParks);
+        imgNationalParks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (preferredCategories.size() <= 14 && ! imgNationalParks.isSelected())
+                {
+                    preferredCategories.add(txtNationalParks.getText().toString());
+                    imgNationalParks.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_check_circle_outline_24));
+                    imgNationalParks.setAnimation(fadeIn);
+                    txtNationalParks.setTextColor(getResources().getColor(R.color.theme_green));
+                    imgNationalParks.setSelected(true);
+
+                } else {
+                    preferredCategories.remove(txtNationalParks.getText().toString());
+                    imgNationalParks.setImageDrawable(getResources().getDrawable(R.drawable.nature));
+                    txtNationalParks.setTextColor(getResources().getColor(R.color.cardview_dark_background));
+                    imgNationalParks.setSelected(false);
 
                 }
             }

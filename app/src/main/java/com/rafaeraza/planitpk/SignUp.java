@@ -28,7 +28,7 @@ public class SignUp extends AppCompatActivity {
     //Variables
     ImageView imgBackPress;
     TextInputLayout inputName, inputEmail, inputPassword, inputConfirmPassword;
-    TextView guestText;
+    TextView signUpHint, guestText;
     Button regBtn;
 
     private ProgressBar progressBar;
@@ -42,6 +42,10 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        signUpHint = findViewById(R.id.txtSignUpHint);
+        String htmlSUString = "<u>Already have an account? Sign In</u>";
+        signUpHint.setText(Html.fromHtml(htmlSUString));
 
         guestText = findViewById(R.id.txtGuest);
         String htmlString="<u>Continue as GUEST</u>";

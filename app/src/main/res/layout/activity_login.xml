@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
+    android:background="@drawable/gradient_main"
     android:padding="20dp"
     tools:context=".Login">
 
@@ -24,8 +24,10 @@
             android:id="@+id/txtWelcomeMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/bungee"
             android:text="Hello there, Welcome back!"
+            android:includeFontPadding="false"
             android:textColor="@color/black"
             android:textSize="36sp" />
 
@@ -39,22 +41,25 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:weightSum="6"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
                 android:hint="Email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:drawablePadding="24dp"
+                    android:drawableStart="@drawable/vector_email"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,14 +67,17 @@
                 android:id="@+id/inputPassword"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
                 android:hint="Password"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:drawablePadding="24dp"
+                    android:drawableStart="@drawable/vector_password"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +96,8 @@
             <Button
                 android:id="@+id/loginBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:backgroundTint="@color/theme_green"
@@ -146,17 +155,17 @@
 
             <TextView
                 android:id="@+id/txtGuest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#0fffffff"
-                android:layout_marginTop="12dp"
-                android:layout_gravity="center"
-                android:onClick="skip"
-                android:text="Continue as GUEST"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:text=""
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+
 
         </LinearLayout>
 

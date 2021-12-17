@@ -22,10 +22,8 @@ public class Login extends AppCompatActivity {
 
     //Variables
     TextInputLayout inputEmail, inputPassword;
-    TextView guestText;
+    TextView forgotPwd, signUpHint, guestText;
     Button loginBtn;
-
-    TextView forgotPwd;
 
     private FirebaseAuth mAuth;
 
@@ -33,6 +31,14 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        forgotPwd = findViewById(R.id.txtForgotPassword);
+        String htmlFPString = "<u>Forgot Password?</u>";
+        forgotPwd.setText(Html.fromHtml(htmlFPString));
+
+        signUpHint = findViewById(R.id.txtSignUpHint);
+        String htmlSUHString = "<u>New User? Sign Up</u>";
+        signUpHint.setText(Html.fromHtml(htmlSUHString));
 
         guestText = findViewById(R.id.txtGuest);
         String htmlString="<u>Continue as GUEST</u>";

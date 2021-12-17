@@ -4,79 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
+    android:background="@drawable/gradient_main"
     tools:context=".Explore">
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_baseline_account_circle_24"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp" />
-
-    <TextView
-        android:id="@+id/txtUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/profile_image"
-        android:layout_alignBottom="@id/profile_image"
-        android:layout_toRightOf="@id/profile_image"
-        android:fontFamily="@font/poppins"
-        android:padding="5dp"
-        android:text="Full Name"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/notificationsImgCardView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@id/profile_image"
-        android:layout_alignParentEnd="true"
-        android:layout_marginHorizontal="10dp"
-        app:cardCornerRadius="90dp">
-
-        <ImageView
-            android:id="@+id/notifications_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_baseline_circle_notifications_24" />
-
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/locationInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profile_image"
-        android:layout_alignStart="@id/profile_image"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/ic_baseline_location_on_24" />
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
 
         <TextView
+            android:id="@+id/txtUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/profile_image"
+            android:layout_alignBottom="@id/profile_image"
+            android:layout_toRightOf="@id/profile_image"
             android:fontFamily="@font/poppins"
-            android:text="Islamabad"
-            android:textAlignment="center"
+            android:padding="5dp"
+            android:text="Full Name"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/notificationsImgCardView"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignBottom="@id/profile_image"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="90dp">
+
+            <ImageView
+                android:id="@+id/notifications_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_circle_notifications_24" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_image"
+            android:layout_alignStart="@id/profile_image"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_baseline_location_on_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="Islamabad"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/exploreMsg"
@@ -91,11 +98,14 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:fontFamily="@font/bungee"
+            android:includeFontPadding="false"
+            android:paddingVertical="10dp"
             android:text="Explore"
             android:textColor="@color/black"
             android:textSize="32sp" />
 
         <TextView
+            android:id="@+id/txtNewPlaces"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -106,6 +116,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
+
     </RelativeLayout>
 
     <ScrollView
@@ -204,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/poppins"
-                    android:text="Top Trips"
+                    android:text="Top Rated Destinations"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -222,18 +233,18 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginHorizontal="5dp"
-                app:cardBackgroundColor="@color/off_white"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="14dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:weightSum="4"
-                    android:padding="7dp">
+                    android:padding="7dp"
+                    android:weightSum="4">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -246,15 +257,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/wall3"/>
+                            android:src="@drawable/wall3" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:id="@+id/cv1Name"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="0.5"
                         android:layout_gravity="center"
+                        android:layout_weight="0.5"
                         android:fontFamily="@font/bungee"
                         android:text="Weekend Trip to Skardu"
                         android:textAlignment="center"
@@ -268,11 +279,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="0.5"
+                        android:fontFamily="@font/poppins"
                         android:text="Find out why it's one of Pakistan's most sought-after vacation hotspots"
                         android:textAlignment="center"
-                        android:fontFamily="@font/poppins"
                         android:textColor="@color/black"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -281,18 +292,18 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginHorizontal="5dp"
-                app:cardBackgroundColor="@color/off_white"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="14dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:weightSum="4"
-                    android:padding="7dp">
+                    android:padding="7dp"
+                    android:weightSum="4">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -305,15 +316,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/welcomewall"/>
+                            android:src="@drawable/welcomewall" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:id="@+id/cv2Name"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="0.5"
                         android:layout_gravity="center"
+                        android:layout_weight="0.5"
                         android:fontFamily="@font/bungee"
                         android:text="Take on the Karakoram"
                         android:textAlignment="center"
@@ -326,11 +337,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="0.5"
+                        android:fontFamily="@font/poppins"
                         android:text="A mountaineering experience like no other...\nRead our guide"
                         android:textAlignment="center"
-                        android:fontFamily="@font/poppins"
                         android:textColor="@color/black"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

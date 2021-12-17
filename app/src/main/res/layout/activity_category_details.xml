@@ -4,33 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
+    android:background="@drawable/gradient_main"
     android:padding="10dp"
     tools:context=".CategoryDetails">
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/backPress"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="start"
+        <androidx.cardview.widget.CardView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/off_white"
+            app:cardCornerRadius="90dp">
+
+            <ImageView
+                android:id="@+id/backPress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayout1">
+        android:layout_marginTop="3dp"
+        android:padding="10dp"
+        android:layout_toEndOf="@id/relativeLayout1">
 
         <TextView
             android:id="@+id/txtCategoryName"
@@ -38,9 +49,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:fontFamily="@font/bungee"
+            android:includeFontPadding="false"
             android:text="Category Name"
             android:textColor="@color/black"
-            android:textSize="36sp" />
+            android:textSize="32sp" />
     </RelativeLayout>
 
     <RelativeLayout

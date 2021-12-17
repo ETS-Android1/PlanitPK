@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_main"
+    tools:context=".EditProfile">
+
+    <RelativeLayout
+        android:id="@+id/imgRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/backPressCV"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/off_white"
+            app:cardCornerRadius="90dp">
+
+            <ImageView
+                android:id="@+id/backPress"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.cardview.widget.CardView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfilePicture"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_below="@id/backPressCV"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/vector_user_green" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSelectProfileImg"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_below="@+id/imgProfilePicture"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-20dp"
+            android:backgroundTint="@color/green_primary"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            app:icon="@drawable/ic_photo_camera_black_48dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
+            app:iconTint="@color/white"
+            app:rippleColor="@color/rippleColor"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imgRL"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="6dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userNameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_account_circle_24"
+                android:drawablePadding="24dp"
+                android:drawableTint="@color/theme_green"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/emailTile"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userNameLayout"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:drawableLeft="@drawable/vector_email"
+            android:drawableRight="@drawable/icon_chevron_right"
+            android:drawablePadding="24dp"
+            android:focusable="true"
+            android:fontFamily="@font/poppins"
+            android:paddingVertical="12dp"
+            android:text="Update Email"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textFontWeight="400"
+            android:textSize="18sp"
+            app:iconPadding="24dp" />
+
+        <View
+            android:id="@+id/emailDivider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/emailTile"
+            android:background="?android:attr/dividerVertical" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/passwordTile"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailDivider"
+            android:clickable="true"
+            android:drawableLeft="@drawable/vector_password"
+            android:drawableRight="@drawable/icon_chevron_right"
+            android:drawablePadding="24dp"
+            android:focusable="true"
+            android:fontFamily="@font/poppins"
+            android:paddingVertical="12dp"
+            android:text="Update Password"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textFontWeight="400"
+            android:textSize="18sp"
+            app:iconPadding="24dp" />
+
+        <View
+            android:id="@+id/passwordDivider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/passwordTile"
+            android:background="?android:attr/dividerVertical" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btnUpdate"
+            android:layout_below="@+id/passwordDivider"
+            android:layout_marginBottom="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/vector_edit_profile" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/poppins"
+            android:paddingVertical="16dp"
+            android:backgroundTint="@color/green_primary"
+            android:text="Update"
+            android:textFontWeight="600"
+            android:textSize="18sp"
+            app:cornerRadius="8dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/loading_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/loadingColorBG"
+        android:clickable="false"
+        android:elevation="20dp"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/editProfileLoader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/green_dark"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:visibility="gone" />
+
+</RelativeLayout>

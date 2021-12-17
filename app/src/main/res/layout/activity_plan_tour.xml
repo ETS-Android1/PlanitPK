@@ -4,16 +4,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
+    android:background="@drawable/gradient_main"
     tools:context=".PlanTour">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/noGoalsYetRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Plan Tour"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:layout_centerInParent="true"/>
+        android:layout_marginTop="80dp">
+
+        <ImageView
+            android:id="@+id/blankImg"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/travelers_illustration" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/blankImg"
+            android:fontFamily="@font/poppins"
+            android:text="You haven't created any trips yet!"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tripNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="20dp"
+        android:layout_below="@id/noGoalsYetRL">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Trip Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tripNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_airplane_ticket_24"
+                android:drawablePadding="24dp"
+                android:drawableTint="@color/theme_green"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createGoalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tripNameLayout"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins"
+        android:insetTop="0dp"
+        android:paddingVertical="16dp"
+        android:text="Create A Trip"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/green_primary"
+        app:cornerRadius="8dp" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_Navigation"

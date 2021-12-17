@@ -3,62 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/off_white"
-    android:padding="5dp">
+    android:background="@color/white"
+    android:padding="10dp">
+
+
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/slider_text"
+        android:id="@+id/sliderIllustration"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f2f3f4"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="10dp">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/slider_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="#f2f3f4"
+            app:cardBackgroundColor="@color/green_light"
+            app:cardCornerRadius="20dp">
 
-            <TextView
-                android:id="@+id/slider_title"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-condensed"
-                android:padding="3dp"
-                android:text="@string/first_slide_title"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/slider_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/slider_title"
-                android:padding="8dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/first_slide_desc"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:justificationMode="inter_word"/>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/slider_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="3dp"
+                    android:text="@string/first_slide_title"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/slider_text"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="14dp">
+                <TextView
+                    android:id="@+id/slider_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/slider_title"
+                    android:fontFamily="@font/poppins"
+                    android:justificationMode="inter_word"
+                    android:padding="8dp"
+                    android:text="@string/first_slide_desc"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
         <ImageView
             android:id="@+id/slider_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/wall1" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/travelers_illustration" />
 
     </androidx.cardview.widget.CardView>
 

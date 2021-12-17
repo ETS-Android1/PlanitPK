@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +27,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,14 +49,21 @@ public class Explore extends AppCompatActivity {
     RecyclerView recyclerViewCategories, recyclerViewRecommendations, recyclerViewTopTrips;
     BottomNavigationView bottomNavigationView;
 
-    private ArrayList<CategoryHelperClass> categories, recommendedCategories, topTrips;
+    private ArrayList<CategoryHelperClass> categories;
+    private ArrayList<LocationHelperClass> recommendedLocations, topTrips;
     private ProgressBar progressBarCategories, progressBarRecommendations, progressBarTopTrips;
-    private CategoryAdapter categoryAdapter, categoryRecommendationsAdapter, topTripsAdapter;
+    private CategoryAdapter categoryAdapter;
+    private LocationMiniAdapter locationsRecommendationsAdapter;
+    private LocationMiniRatingAdapter topTripsAdapter;
     CategoryAdapter.OnUserClickListener onCategoryClickListener;
+    LocationMiniAdapter.OnUserClickListener onLocationClickListener;
+    LocationMiniRatingAdapter.OnUserClickListener onRatedLocationClickListener;
 
     private FirebaseAuth mAuth;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users/" + user.getUid());
+    DatabaseReference locRef = FirebaseDatabase.getInstance().getReference().child("Locations");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +79,7 @@ public class Explore extends AppCompatActivity {
         progressBarRecommendations= findViewById(R.id.progressBarRecommendations);
         progressBarTopTrips= findViewById(R.id.progressBarTopTrips);
         categories = new ArrayList<>();
-        recommendedCategories = new ArrayList<>();
+        recommendedLocations = new ArrayList<>();
         topTrips = new ArrayList<>();
         recyclerViewCategories = findViewById(R.id.recyclerViewCategories);
         recyclerViewRecommendations = findViewById(R.id.recyclerViewRecommendations);
@@ -72,8 +91,34 @@ public class Explore extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         };
 
+        onLocationClickListener = position -> {
+            Toast.makeText(Explore.this, "Tapped on location", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Explore.this, LocationDetails.class)
+                    .putExtra("location_name", recommendedLocations.get(position).getName())
+                    .putExtra("location_category", recommendedLocations.get(position).getCategory())
+                    .putExtra("location_description", recommendedLocations.get(position).getDesc())
+                    .putExtra("location_rating", recommendedLocations.get(position).getRating())
+                    .putExtra("img1", recommendedLocations.get(position).getImages().getLink1())
+                    .putExtra("img2", recommendedLocations.get(position).getImages().getLink2())
+                    .putExtra("img3", recommendedLocations.get(position).getImages().getLink3()));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+        };
+
+        onRatedLocationClickListener = position -> {
+            Toast.makeText(Explore.this, "Tapped on location", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Explore.this, LocationDetails.class)
+                    .putExtra("location_name", topTrips.get(position).getName())
+                    .putExtra("location_category", topTrips.get(position).getCategory())
+                    .putExtra("location_description", topTrips.get(position).getDesc())
+                    .putExtra("location_rating", topTrips.get(position).getRating())
+                    .putExtra("img1", topTrips.get(position).getImages().getLink1())
+                    .putExtra("img2", topTrips.get(position).getImages().getLink2())
+                    .putExtra("img3", topTrips.get(position).getImages().getLink3()));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+        };
+
         getCategories();
-        getRecommendedCategories();
+        getRecommendedLocations();
         getTopTrips();
 
         // Bottom Nav Bar
@@ -85,12 +130,15 @@ public class Explore extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.search:
                         startActivity(new Intent(getApplicationContext(), Search.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.plan:
                         startActivity(new Intent(getApplicationContext(), PlanTour.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(), Account.class));
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         return true;
                 }
                 return false;
@@ -154,17 +202,35 @@ public class Explore extends AppCompatActivity {
     }
 
     // Retrieve locations from Firebase and setup recyclerView
-    private void getRecommendedCategories() {
-        FirebaseDatabase.getInstance().getReference().child("Categories").addListenerForSingleValueEvent(new ValueEventListener() {
+    private void getRecommendedLocations() {
+        List<String> recommended = new ArrayList<>();
+        reference.child("preferences").child("recommendations").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    recommended.add(dataSnapshot.getValue(String.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        locRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    recommendedCategories.add(dataSnapshot1.getValue(CategoryHelperClass.class));
+                    for (String locationName: recommended) {
+                        if (Objects.equals(dataSnapshot1.child("name").getValue(String.class), locationName))
+                            recommendedLocations.add(dataSnapshot1.getValue(LocationHelperClass.class));
+                    }
                 }
 
-                categoryRecommendationsAdapter = new CategoryAdapter(recommendedCategories, Explore.this, onCategoryClickListener);
+                locationsRecommendationsAdapter = new LocationMiniAdapter(recommendedLocations, Explore.this, onLocationClickListener);
                 recyclerViewRecommendations.setLayoutManager(new LinearLayoutManager(Explore.this, LinearLayoutManager.HORIZONTAL, false));
-                recyclerViewRecommendations.setAdapter(categoryRecommendationsAdapter);
+                recyclerViewRecommendations.setAdapter(locationsRecommendationsAdapter);
                 progressBarRecommendations.setVisibility(View.GONE);
                 recyclerViewRecommendations.setVisibility(View.VISIBLE);
             }
@@ -178,14 +244,17 @@ public class Explore extends AppCompatActivity {
 
     // Retrieve locations from Firebase and setup recyclerView
     private void getTopTrips() {
-        FirebaseDatabase.getInstance().getReference().child("Categories").addListenerForSingleValueEvent(new ValueEventListener() {
+        locRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    topTrips.add(dataSnapshot1.getValue(CategoryHelperClass.class));
+                    String rating = dataSnapshot1.child("rating").getValue(String.class);
+                    if (rating != null && rating.equals("5")) {
+                        topTrips.add(dataSnapshot1.getValue(LocationHelperClass.class));
+                    }
                 }
 
-                topTripsAdapter = new CategoryAdapter(topTrips, Explore.this, onCategoryClickListener);
+                topTripsAdapter = new LocationMiniRatingAdapter(topTrips, Explore.this, onRatedLocationClickListener);
                 recyclerViewTopTrips.setLayoutManager(new LinearLayoutManager(Explore.this, LinearLayoutManager.HORIZONTAL, false));
                 recyclerViewTopTrips.setAdapter(topTripsAdapter);
                 progressBarTopTrips.setVisibility(View.GONE);
