@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanitPK">
         <activity
-            android:name=".EditProfile"
+            android:name=".MyFavorites"
             android:exported="false"
             android:theme="@style/StyleWithoutActionBar"/>
+        <activity
+            android:name=".MyTrips"
+            android:exported="false"
+            android:theme="@style/StyleWithoutActionBar" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false"
+            android:theme="@style/StyleWithoutActionBar" />
         <activity
             android:name=".LocationDetails"
             android:exported="false"

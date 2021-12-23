@@ -15,6 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Welcome extends AppCompatActivity {
 
+    /*
+    Declarations
+     */
     Button getStarted;
     TextView txtWelcomeMsg, skipMsg;
     Animation topAnim;
@@ -42,7 +45,7 @@ public class Welcome extends AppCompatActivity {
         txtWelcomeMsg.setAnimation(topAnim);
 
         skipMsg = findViewById(R.id.skip_btn);
-        String htmlString="<u>Skip</u>";
+        String htmlString = "<u>Skip</u>";
         skipMsg.setText(Html.fromHtml(htmlString));
 
         getStarted = findViewById(R.id.getStartedBtn);

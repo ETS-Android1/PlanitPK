@@ -4,6 +4,9 @@ public class CategoryHelperClass {
     String name;
     String image;
 
+    /*
+    Constructors
+     */
     public CategoryHelperClass() {
     }
 
@@ -12,6 +15,9 @@ public class CategoryHelperClass {
         this.image = image;
     }
 
+    /*
+    Getters and Setters
+     */
     public String getName() {
         return name;
     }

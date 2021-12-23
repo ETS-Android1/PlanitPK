@@ -12,6 +12,9 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class PlanTour extends AppCompatActivity {
 
+    /*
+    Declarations
+     */
     BottomNavigationView bottomNavigationView;
 
     @Override

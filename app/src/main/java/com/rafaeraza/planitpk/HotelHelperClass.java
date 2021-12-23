@@ -1,9 +1,11 @@
 package com.rafaeraza.planitpk;
 
 public class HotelHelperClass {
-    String about, accommodationType, avgPrice, facility
-            , name, rating;
+    String about, accommodationType, avgPrice, facility, name, rating;
 
+    /*
+    Constructors
+     */
     public HotelHelperClass() {
     }
 
@@ -16,6 +18,9 @@ public class HotelHelperClass {
         this.rating = rating;
     }
 
+    /*
+    Getters and Setters
+     */
     public String getAbout() {
         return about;
     }

@@ -43,9 +43,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Explore extends AppCompatActivity {
 
+    /*
+    Declarations
+     */
     CircleImageView profileImg;
     ImageView notificationsImg;
-    TextView fullNameLabel;
+    TextView fullNameLabel, txtRecommended;
     RecyclerView recyclerViewCategories, recyclerViewRecommendations, recyclerViewTopTrips;
     BottomNavigationView bottomNavigationView;
 
@@ -69,21 +72,35 @@ public class Explore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
+        /*
+        Hooks
+         */
         profileImg = findViewById(R.id.profile_image);
         notificationsImg = findViewById(R.id.notifications_img);
         fullNameLabel = findViewById(R.id.txtUserName);
+        txtRecommended = findViewById(R.id.txtRecommended);
+        txtRecommended.setVisibility(View.GONE);
 
-        showAllUserData();
-
-        progressBarCategories= findViewById(R.id.progressBarCategories);
-        progressBarRecommendations= findViewById(R.id.progressBarRecommendations);
-        progressBarTopTrips= findViewById(R.id.progressBarTopTrips);
+        progressBarCategories = findViewById(R.id.progressBarCategories);
+        progressBarRecommendations = findViewById(R.id.progressBarRecommendations);
+        progressBarTopTrips = findViewById(R.id.progressBarTopTrips);
         categories = new ArrayList<>();
         recommendedLocations = new ArrayList<>();
         topTrips = new ArrayList<>();
         recyclerViewCategories = findViewById(R.id.recyclerViewCategories);
         recyclerViewRecommendations = findViewById(R.id.recyclerViewRecommendations);
         recyclerViewTopTrips = findViewById(R.id.recyclerViewTopTrips);
+
+        /*
+        On Click Listeners
+         */
+        profileImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Explore.this, Account.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+            }
+        });
 
         onCategoryClickListener = position -> {
             Toast.makeText(Explore.this, "Tapped on category", Toast.LENGTH_SHORT).show();
@@ -117,11 +134,9 @@ public class Explore extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         };
 
-        getCategories();
-        getRecommendedLocations();
-        getTopTrips();
-
-        // Bottom Nav Bar
+        /*
+         Bottom Nav Bar
+         */
         bottomNavigationView = findViewById(R.id.bottom_Navigation);
         bottomNavigationView.setSelectedItemId(R.id.explore);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -144,8 +159,20 @@ public class Explore extends AppCompatActivity {
                 return false;
             }
         });
+
+        /*
+        Function Calls
+         */
+        getCategories();
+        getRecommendedLocations();
+        getTopTrips();
+        showAllUserData();
     }
 
+    //=============================================================================================//
+    /*
+    Function to retrieve user data from Firebase
+     */
     private void showAllUserData() {
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -178,7 +205,9 @@ public class Explore extends AppCompatActivity {
         });
     }
 
-    // Retrieve locations from Firebase and setup recyclerView
+    /*
+     Function to retrieve categories from Firebase and setup recyclerView
+     */
     private void getCategories() {
         FirebaseDatabase.getInstance().getReference().child("Categories").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -201,13 +230,15 @@ public class Explore extends AppCompatActivity {
         });
     }
 
-    // Retrieve locations from Firebase and setup recyclerView
+    /*
+     Function to retrieve recommended locations from Firebase and setup recyclerView
+     */
     private void getRecommendedLocations() {
         List<String> recommended = new ArrayList<>();
         reference.child("preferences").child("recommendations").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     recommended.add(dataSnapshot.getValue(String.class));
                 }
             }
@@ -222,9 +253,11 @@ public class Explore extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    for (String locationName: recommended) {
-                        if (Objects.equals(dataSnapshot1.child("name").getValue(String.class), locationName))
+                    for (String locationName : recommended) {
+                        if (Objects.equals(dataSnapshot1.child("name").getValue(String.class), locationName)) {
                             recommendedLocations.add(dataSnapshot1.getValue(LocationHelperClass.class));
+                            txtRecommended.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
 
@@ -242,14 +275,16 @@ public class Explore extends AppCompatActivity {
         });
     }
 
-    // Retrieve locations from Firebase and setup recyclerView
+    /*
+     Function to retrieve top rated locations from Firebase and setup recyclerView
+     */
     private void getTopTrips() {
         locRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    String rating = dataSnapshot1.child("rating").getValue(String.class);
-                    if (rating != null && rating.equals("5")) {
+                    double rating = Objects.requireNonNull(dataSnapshot1.child("rating").getValue(Double.class));
+                    if (rating >= 4.5) {
                         topTrips.add(dataSnapshot1.getValue(LocationHelperClass.class));
                     }
                 }

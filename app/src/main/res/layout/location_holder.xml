@@ -36,11 +36,11 @@
             android:layout_gravity="center"
             android:fontFamily="@font/bungee"
             android:hint="Location Name"
+            android:maxLines="2"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:maxLines="2"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/locationCategory"
@@ -59,15 +59,15 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:readMoreText= "...Read More"
-            app:readMoreColor="@color/theme_green"
             android:fontFamily="@font/poppins"
             android:hint="Description"
-            app:readMoreMaxLine="3"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:readMoreColor="@color/theme_green"
+            app:readMoreMaxLine="3"
+            app:readMoreText="...Read More" />
 
 
     </LinearLayout>
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <ImageView
                 android:id="@+id/locationRating"
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:fontFamily="@font/poppins"
                 android:includeFontPadding="false"
                 android:text="4.7"

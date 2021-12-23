@@ -21,6 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class CategoryDetails extends AppCompatActivity {
+
+    /*
+    Declarations
+     */
     RecyclerView recyclerView;
     private ArrayList<LocationHelperClass> locations;
     private ProgressBar progressBar;
@@ -35,7 +39,19 @@ public class CategoryDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_details);
 
+        /*
+        Hooks
+         */
+        txtCategoryName = findViewById(R.id.txtCategoryName);
         imgBackPress = findViewById(R.id.backPress);
+        recyclerView = findViewById(R.id.recyclerView);
+        progressBar = findViewById(R.id.progressBar);
+
+        locations = new ArrayList<>();
+
+        /*
+        On Click Listeners
+         */
         imgBackPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,17 +74,22 @@ public class CategoryDetails extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         };
 
-        txtCategoryName = findViewById(R.id.txtCategoryName);
+        /*
+        On Create Data Setters
+         */
         txtCategoryName.setText(getIntent().getStringExtra("category_name"));
 
-        recyclerView = findViewById(R.id.recyclerView);
-        progressBar = findViewById(R.id.progressBar);
-
-        locations = new ArrayList<>();
-
+        /*
+        Function Calls
+         */
         getLocations(getIntent().getStringExtra("category_name"));
     }
 
+    //=============================================================================================//
+
+    /*
+    Function to retrieve category specific locations from Firebase and display in Recycler View
+     */
     private void getLocations(String categoryName) {
         locations.clear();
         FirebaseDatabase.getInstance().getReference("Locations").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -90,6 +111,5 @@ public class CategoryDetails extends AppCompatActivity {
 
             }
         });
-
     }
 }

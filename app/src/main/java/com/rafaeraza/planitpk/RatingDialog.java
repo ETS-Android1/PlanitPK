@@ -20,6 +20,9 @@ import java.util.List;
 
 public class RatingDialog extends AppCompatDialogFragment {
 
+    /*
+    Declarations
+     */
     int rating;
     ImageView ratingOne, ratingTwo, ratingThree, ratingFour, ratingFive;
     private RatingDialogListener listener;
@@ -50,6 +53,9 @@ public class RatingDialog extends AppCompatDialogFragment {
                     }
                 });
 
+        /*
+        Rating checks
+         */
         ratingOne = view.findViewById(R.id.rating1);
         ratingOne.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +198,9 @@ public class RatingDialog extends AppCompatDialogFragment {
         }
     }
 
+    /*
+    Interface
+     */
     public interface RatingDialogListener {
         void setRating(int newRating);
     }

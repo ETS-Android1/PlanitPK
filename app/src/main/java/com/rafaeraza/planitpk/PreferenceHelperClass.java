@@ -6,6 +6,9 @@ public class PreferenceHelperClass {
     ArrayList<String> categories, districts, activities;
     String favorites;
 
+    /*
+    Constructors
+     */
     public PreferenceHelperClass() {
     }
 
@@ -16,6 +19,9 @@ public class PreferenceHelperClass {
         this.favorites = favorites;
     }
 
+    /*
+    Getters and Setters
+     */
     public ArrayList<String> getCategories() {
         return categories;
     }

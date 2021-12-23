@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyTrips">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout_myTrips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar_myTrips"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="@color/green_primary"
+            android:paddingHorizontal="10dp"
+            app:menu="@menu/edit_profile_menu"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="My Trips"
+            app:titleTextAppearance="@style/GilroySemiBoldTextAppearance" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBarLayout_myTrips"
+        android:paddingHorizontal="0dp">
+
+        <RelativeLayout
+            android:id="@+id/noGoalsYetRL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/createGoalButton"
+            android:layout_centerInParent="true"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp">
+
+            <ImageView
+                android:id="@+id/blankImg"
+                android:layout_width="wrap_content"
+                android:layout_height="400dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/travelers_illustration" />
+
+            <TextView
+                android:id="@+id/blankText1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/blankImg"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/poppins"
+                android:text="You haven't created any trips yet!"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textFontWeight="700"
+                android:textSize="28sp" />
+
+        </RelativeLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createGoalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="16dp"
+            android:backgroundTint="@color/green_primary"
+            android:fontFamily="@font/poppins"
+            android:paddingVertical="16dp"
+            android:text="Create A Trip"
+            android:textAllCaps="true"
+            android:textFontWeight="600"
+            android:textSize="18sp"
+            app:cornerRadius="8dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

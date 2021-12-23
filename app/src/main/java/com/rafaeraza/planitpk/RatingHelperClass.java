@@ -4,6 +4,9 @@ public class RatingHelperClass {
     private String locationName;
     private int userRating;
 
+    /*
+    Constructors
+     */
     public RatingHelperClass() {
     }
 
@@ -11,6 +14,10 @@ public class RatingHelperClass {
         this.locationName = locationName;
         this.userRating = userRating;
     }
+
+    /*
+    Getters and Setters
+     */
 
     public String getLocationName() {
         return locationName;

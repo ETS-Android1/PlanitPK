@@ -74,14 +74,16 @@
             android:layout_height="40dp"
             android:layout_alignTop="@id/search_field"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="3dp"
             android:clickable="true"
             android:focusable="true"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
+            android:onClick="showFilterList"
             app:backgroundTint="@color/green_light"
             app:icon="@drawable/icon_filter"
             app:iconGravity="textStart"
@@ -90,6 +92,19 @@
             app:iconTint="@color/colorPrimaryDark"
             app:rippleColor="@color/rippleColor"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
+
+        <TextView
+            android:id="@+id/txtCurrentFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_field"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins"
+            android:text=""
+            android:textAlignment="textStart"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

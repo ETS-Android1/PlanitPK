@@ -19,7 +19,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class LocationBasicAdapter extends RecyclerView.Adapter<LocationBasicAdapter.LocationBasicHolder> implements Filterable {
-    // Class attributes
+    /*
+     Class attributes
+     */
     private ArrayList<LocationHelperClass> locations;
     private ArrayList<LocationHelperClass> locationsAll;
     private Context context;
@@ -32,6 +34,9 @@ public class LocationBasicAdapter extends RecyclerView.Adapter<LocationBasicAdap
         this.onUserClickListener = onUserClickListener;
     }
 
+    /*
+    Filterable implemented methods
+     */
     @Override
     public Filter getFilter() {
         return filter;
@@ -46,10 +51,12 @@ public class LocationBasicAdapter extends RecyclerView.Adapter<LocationBasicAdap
             if (charSequence.toString().isEmpty()) {
                 filteredList.addAll(locationsAll);
             } else {
-                for (LocationHelperClass location: locationsAll) {
+                for (LocationHelperClass location : locationsAll) {
                     if (location.getName().toLowerCase().contains(searchQuery.toLowerCase())) {
                         filteredList.add(location);
                     } else if (location.getCategory().toLowerCase().contains(searchQuery.toLowerCase())) {
+                        filteredList.add(location);
+                    } else if (location.getDistrict().toLowerCase().contains(searchQuery.toLowerCase())) {
                         filteredList.add(location);
                     }
                 }
@@ -72,7 +79,7 @@ public class LocationBasicAdapter extends RecyclerView.Adapter<LocationBasicAdap
     @NonNull
     @Override
     public LocationBasicAdapter.LocationBasicHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.location_holder,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.location_holder, parent, false);
 
         return new LocationBasicHolder(view);
     }
@@ -82,6 +89,11 @@ public class LocationBasicAdapter extends RecyclerView.Adapter<LocationBasicAdap
         holder.txtLocationName.setText(locations.get(position).getName());
         holder.txtLocationCategory.setText(locations.get(position).getCategory());
         holder.txtLocationDesc.setText(locations.get(position).getDesc());
+        if (locations.get(position).getRating() != 0) {
+            holder.txtLocationRating.setText(String.valueOf(locations.get(position).getRating()));
+        } else {
+            holder.txtLocationRating.setText("N/A");
+        }
         Glide.with(context).load(locations.get(position).getImages().getLink1()).error(R.drawable.ic_baseline_image_24).placeholder(R.drawable.ic_baseline_image_24).into(holder.imageView);
     }
 
@@ -90,12 +102,15 @@ public class LocationBasicAdapter extends RecyclerView.Adapter<LocationBasicAdap
         return locations.size();
     }
 
-    interface OnUserClickListener{
+    interface OnUserClickListener {
         void onUserClicked(int position);
     }
 
-    class LocationBasicHolder extends RecyclerView.ViewHolder{
-        TextView txtLocationName, txtLocationCategory, txtLocationDesc;
+    /*
+    View Holder
+     */
+    class LocationBasicHolder extends RecyclerView.ViewHolder {
+        TextView txtLocationName, txtLocationCategory, txtLocationDesc, txtLocationRating;
         ImageView imageView;
 
         public LocationBasicHolder(@NonNull View itemView) {
@@ -110,6 +125,7 @@ public class LocationBasicAdapter extends RecyclerView.Adapter<LocationBasicAdap
             txtLocationName = itemView.findViewById(R.id.locationName);
             txtLocationCategory = itemView.findViewById(R.id.locationCategory);
             txtLocationDesc = itemView.findViewById(R.id.locationDesc);
+            txtLocationRating = itemView.findViewById(R.id.txtLocationRating);
             imageView = itemView.findViewById(R.id.locationImg);
         }
     }

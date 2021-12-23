@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="9"
-        android:padding="7dp">
+        android:padding="7dp"
+        android:weightSum="9">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -35,21 +35,21 @@
             android:id="@+id/locationName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.5"
             android:layout_gravity="center"
+            android:layout_weight="2.5"
+            android:ellipsize="end"
             android:fontFamily="@font/bungee"
             android:hint="Location Name"
+            android:maxLines="2"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:maxLines="2"
-            android:ellipsize="end"/>
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="90dp"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
             android:layout_gravity="center"
+            android:layout_weight="1.5"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -69,8 +69,8 @@
                 android:id="@+id/txtLocationRating"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginStart="2dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins"
                 android:includeFontPadding="false"
@@ -85,8 +85,8 @@
             android:id="@+id/locationCategory"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:fontFamily="@font/poppins"
             android:hint="Category"
             android:textAlignment="center"

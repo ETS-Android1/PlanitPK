@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,9 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Search extends AppCompatActivity {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class Search extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+
+    /*
+    Declarations
+     */
     RecyclerView recyclerView;
+    TextView currentFilter;
+    CircleImageView filterBadge;
     private ArrayList<LocationHelperClass> locations;
     private ProgressBar progressBar;
     private LocationBasicAdapter locationBasicAdapter;
@@ -38,12 +47,22 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        /*
+        Hooks
+         */
         recyclerView = findViewById(R.id.recyclerView);
         progressBar = findViewById(R.id.progressBar);
+        currentFilter = findViewById(R.id.txtCurrentFilter);
+        currentFilter.setVisibility(View.GONE);
+        filterBadge = findViewById(R.id.filterBadge);
 
         locations = new ArrayList<>();
 
         searchView = findViewById(R.id.search_field);
+
+        /*
+        On Click Listeners
+         */
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -70,8 +89,6 @@ public class Search extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         };
 
-        getLocations();
-
         // Bottom Nav Bar
         bottomNavigationView = findViewById(R.id.bottom_Navigation);
         bottomNavigationView.setSelectedItemId(R.id.search);
@@ -95,8 +112,94 @@ public class Search extends AppCompatActivity {
                 return false;
             }
         });
+
+        /*
+        Function calls
+         */
+        getLocations();
     }
 
+    //============================================================================================//
+    /*
+    Pop up menu showing list of filters
+     */
+    public void showFilterList(View view) {
+        PopupMenu filterList = new PopupMenu(Search.this, view);
+        filterList.setOnMenuItemClickListener(this);
+        filterList.inflate(R.menu.filters_menu);
+        filterList.show();
+    }
+
+    /*
+    Overridden implemented method
+     */
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case (R.id.filter_All):
+                locationBasicAdapter.getFilter().filter("a");
+                currentFilter.setText("");
+                currentFilter.setVisibility(View.GONE);
+                filterBadge.setVisibility(View.GONE);
+                break;
+            case(R.id.filter_Balochistan):
+                locationBasicAdapter.getFilter().filter("Balochistan");
+                currentFilter.setText("(You are currently viewing Balochistan)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            case (R.id.filter_Fata):
+                locationBasicAdapter.getFilter().filter("Fata");
+                currentFilter.setText("(You are currently viewing FATA)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            case(R.id.filter_Gilgit):
+                locationBasicAdapter.getFilter().filter("Gilgit");
+                currentFilter.setText("(You are currently viewing Gilgit-Baltistan)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            case(R.id.filter_Islamabad):
+                locationBasicAdapter.getFilter().filter("Islamabad");
+                currentFilter.setText("(You are currently viewing Islamabad)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            case(R.id.filter_Kashmir):
+                locationBasicAdapter.getFilter().filter("Azad Kashmir");
+                currentFilter.setText("(You are currently viewing Azad Kashmir)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            case(R.id.filter_KPK):
+                locationBasicAdapter.getFilter().filter("Khyber Pakhtun");
+                currentFilter.setText("(You are currently viewing KPK)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            case(R.id.filter_Punjab):
+                locationBasicAdapter.getFilter().filter("Punjab");
+                currentFilter.setText("(You are currently viewing Punjab)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            case(R.id.filter_Sindh):
+                locationBasicAdapter.getFilter().filter("Sindh");
+                currentFilter.setText("(You are currently viewing Sindh)");
+                currentFilter.setVisibility(View.VISIBLE);
+                filterBadge.setVisibility(View.VISIBLE);
+                break;
+            default:
+                filterBadge.setVisibility(View.GONE);
+                return true;
+        }
+        return false;
+    }
+
+    /*
+    Function to retrieve locations from Firebase
+     */
     private void getLocations() {
         locations.clear();
         FirebaseDatabase.getInstance().getReference("Locations").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -119,5 +222,4 @@ public class Search extends AppCompatActivity {
         });
 
     }
-
 }

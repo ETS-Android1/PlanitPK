@@ -3,22 +3,30 @@ package com.rafaeraza.planitpk;
 import java.util.ArrayList;
 
 public class LocationHelperClass {
-    String name, category, Desc, rating;
+    String name, category, Desc, district;
+    double rating;
     LocationImagesHelperClass images;
     HotelHelperClass hotels;
 
+    /*
+    Constructors
+     */
     public LocationHelperClass() {
     }
 
-    public LocationHelperClass(String name, String category, String desc, String rating, LocationImagesHelperClass images, HotelHelperClass hotels) {
+    public LocationHelperClass(String name, String category, String desc, String district, double rating, LocationImagesHelperClass images, HotelHelperClass hotels) {
         this.name = name;
         this.category = category;
         Desc = desc;
+        this.district = district;
         this.rating = rating;
         this.images = images;
         this.hotels = hotels;
     }
 
+    /*
+    Getters and Setters
+     */
     public String getName() {
         return name;
     }
@@ -43,11 +51,11 @@ public class LocationHelperClass {
         Desc = desc;
     }
 
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -65,5 +73,13 @@ public class LocationHelperClass {
 
     public void setHotels(HotelHelperClass hotels) {
         this.hotels = hotels;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 }

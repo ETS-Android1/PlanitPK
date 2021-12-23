@@ -3,6 +3,9 @@ package com.rafaeraza.planitpk;
 public class LocationImagesHelperClass {
     String link1, link2, link3;
 
+    /*
+    Constructors
+     */
     public LocationImagesHelperClass() {
     }
 
@@ -12,6 +15,9 @@ public class LocationImagesHelperClass {
         this.link3 = link3;
     }
 
+    /*
+    Getters and Setters
+     */
     public String getLink1() {
         return link1;
     }

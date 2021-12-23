@@ -89,10 +89,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:drawableStart="@drawable/ic_baseline_account_circle_24"
                     android:drawablePadding="24dp"
                     android:drawableTint="@color/green_primary"
-                    android:drawableStart="@drawable/ic_baseline_account_circle_24"/>
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,9 +107,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:drawableStart="@drawable/vector_email"
                     android:drawablePadding="24dp"
-                    android:drawableStart="@drawable/vector_email"/>
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,9 +125,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:drawableStart="@drawable/vector_password"
                     android:drawablePadding="24dp"
-                    android:drawableStart="@drawable/vector_password"/>
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,9 +143,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:drawableStart="@drawable/vector_password"
                     android:drawablePadding="24dp"
-                    android:drawableStart="@drawable/vector_password"/>
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,16 +153,16 @@
                 android:id="@+id/regBtn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
+                android:layout_weight="1"
                 android:backgroundTint="@color/theme_green"
                 android:clickable="true"
                 android:fontFamily="@font/poppins"
                 android:onClick="registerUser"
                 android:text="Create Account"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView

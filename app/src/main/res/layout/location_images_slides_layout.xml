@@ -6,19 +6,19 @@
     android:background="@color/white"
     app:cardCornerRadius="14dp">
 
-        <androidx.cardview.widget.CardView
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginBottom="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="14dp">
+
+        <ImageView
+            android:id="@+id/locationImg"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_marginBottom="5dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="14dp">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
-            <ImageView
-                android:id="@+id/locationImg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
-
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

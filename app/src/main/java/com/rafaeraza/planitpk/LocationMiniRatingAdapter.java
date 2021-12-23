@@ -37,6 +37,11 @@ public class LocationMiniRatingAdapter extends RecyclerView.Adapter<LocationMini
     public void onBindViewHolder(@NonNull LocationMiniRatingHolder holder, int position) {
         holder.locationName.setText(locations.get(position).getName());
         holder.locationCategory.setText(locations.get(position).getCategory());
+        if (locations.get(position).getRating() != 0) {
+            holder.locationRating.setText(String.valueOf(locations.get(position).getRating()));
+        } else {
+            holder.locationRating.setText("N/A");
+        }
 
         Glide.with(context)
                 .load(locations.get(position).getImages().getLink1()).error(R.drawable.ic_baseline_image_24).placeholder(R.drawable.ic_baseline_image_24)
@@ -56,7 +61,7 @@ public class LocationMiniRatingAdapter extends RecyclerView.Adapter<LocationMini
     // View Holder
     class LocationMiniRatingHolder extends RecyclerView.ViewHolder {
         ImageView locationImg;
-        TextView locationName, locationCategory;
+        TextView locationName, locationCategory, locationRating;
 
         public LocationMiniRatingHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,7 +76,7 @@ public class LocationMiniRatingAdapter extends RecyclerView.Adapter<LocationMini
             locationImg = itemView.findViewById(R.id.locationImg);
             locationName = itemView.findViewById(R.id.locationName);
             locationCategory = itemView.findViewById(R.id.locationCategory);
-
+            locationRating = itemView.findViewById(R.id.txtLocationRating);
         }
     }
 }

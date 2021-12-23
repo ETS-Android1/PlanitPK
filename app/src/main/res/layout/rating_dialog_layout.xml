@@ -17,31 +17,35 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_star_border_24"/>
+            android:src="@drawable/ic_baseline_star_border_24" />
+
         <ImageView
             android:id="@+id/rating2"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_star_border_24"/>
+            android:src="@drawable/ic_baseline_star_border_24" />
+
         <ImageView
             android:id="@+id/rating3"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_star_border_24"/>
+            android:src="@drawable/ic_baseline_star_border_24" />
+
         <ImageView
             android:id="@+id/rating4"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_star_border_24"/>
+            android:src="@drawable/ic_baseline_star_border_24" />
+
         <ImageView
             android:id="@+id/rating5"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_star_border_24"/>
+            android:src="@drawable/ic_baseline_star_border_24" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -25,7 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
-    //Variables
+    /*
+    Declarations
+     */
     ImageView imgBackPress;
     TextInputLayout inputName, inputEmail, inputPassword, inputConfirmPassword;
     TextView signUpHint, guestText;
@@ -71,6 +73,10 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
+    //=============================================================================================//
+    /*
+    Function to start Log In activity
+     */
     public void callLogin(View view) {
         TextView txtSignUpHint = findViewById(R.id.txtSignUpHint);
 
@@ -79,6 +85,9 @@ public class SignUp extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
     }
 
+    /*
+    Function to validate name
+     */
     private Boolean validateName() {
         String val = inputName.getEditText().getText().toString();
 
@@ -91,7 +100,9 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    /*
+    Function to validate email
+     */
     private Boolean validateEmail() {
         String val = inputEmail.getEditText().getText().toString();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -108,7 +119,9 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    /*
+    Function to validate password
+     */
     private Boolean validatePassword() {
         String val = inputPassword.getEditText().getText().toString();
         String conPass = inputConfirmPassword.getEditText().getText().toString();
@@ -137,7 +150,9 @@ public class SignUp extends AppCompatActivity {
             return true;
         }
     }
-
+    /*
+    Function to sign up user using Firebase Auth
+     */
     public void registerUser(View view) {
 
         rootNode = FirebaseDatabase.getInstance();

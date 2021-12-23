@@ -21,7 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPassword extends AppCompatActivity {
 
-    //Variables
+    /*
+    Declarations
+     */
     ImageView imgBackPress;
     TextInputLayout inputEmail;
     Button resetPwdBtn;
@@ -36,7 +38,20 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
+        /*
+        Hooks
+         */
         imgBackPress = findViewById(R.id.backPress);
+        signUpHint = findViewById(R.id.txtSignUpHint);
+        inputEmail = findViewById(R.id.inputEmail);
+        resetPwdBtn = findViewById(R.id.resetPwdBtn);
+        progressBar = findViewById(R.id.progressBar);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        /*
+        On Click Listeners
+         */
         imgBackPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,24 +61,25 @@ public class ForgotPassword extends AppCompatActivity {
             }
         });
 
-        signUpHint = findViewById(R.id.txtSignUpHint);
-        String htmlString="<u>New User? Sign Up</u>";
-        signUpHint.setText(Html.fromHtml(htmlString));
-
-        inputEmail = findViewById(R.id.inputEmail);
-        resetPwdBtn = findViewById(R.id.resetPwdBtn);
-        progressBar = findViewById(R.id.progressBar);
-
-        mAuth = FirebaseAuth.getInstance();
-
         resetPwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 resetPassword();
             }
         });
+
+        /*
+        On Create Data Setter
+         */
+        String htmlString = "<u>New User? Sign Up</u>";
+        signUpHint.setText(Html.fromHtml(htmlString));
     }
 
+    //=============================================================================================//
+
+    /*
+    Function to start Sign Up activity
+     */
     public void callSignUp(View view) {
         TextView txtSignUpHint = findViewById(R.id.txtSignUpHint);
 
@@ -72,6 +88,9 @@ public class ForgotPassword extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }
 
+    /*
+    Function to validate email through checks
+     */
     private Boolean validateEmail() {
         String val = inputEmail.getEditText().getText().toString();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -89,6 +108,9 @@ public class ForgotPassword extends AppCompatActivity {
         }
     }
 
+    /*
+    Function to reset password via Firebase Authentication
+     */
     public void resetPassword() {
 
         if (!validateEmail()) {

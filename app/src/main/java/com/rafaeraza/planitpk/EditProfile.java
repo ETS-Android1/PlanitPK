@@ -37,6 +37,9 @@ import java.util.Objects;
 
 public class EditProfile extends AppCompatActivity {
 
+    /*
+    Declarations
+     */
     ImageView imgBackPress, profileImg;
     MaterialButton selectProfileImgBtn;
     TextInputLayout userNameLayout;
@@ -60,14 +63,9 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        imgBackPress = findViewById(R.id.backPress);
-        imgBackPress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+        /*
+        Hooks
+         */
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
         userID = mAuth.getCurrentUser().getUid();
@@ -80,6 +78,17 @@ public class EditProfile extends AppCompatActivity {
 
         progressBar = findViewById(R.id.editProfileLoader);
         loadingBackground = findViewById(R.id.loading_background);
+        imgBackPress = findViewById(R.id.backPress);
+
+        /*
+        On Click Listeners
+         */
+        imgBackPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +101,6 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
-        getUserData();
-
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,6 +112,9 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        /*
+        Text Change Listener
+         */
         userNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -121,8 +131,17 @@ public class EditProfile extends AppCompatActivity {
 
             }
         });
+
+        /*
+        Function Calls
+         */
+        getUserData();
     }
 
+    //=============================================================================================//
+    /*
+    Function to retrieve user data from Firebase
+     */
     private void getUserData() {
 
         dbRefUser = db.getReference("Users/" + userID);
@@ -162,6 +181,9 @@ public class EditProfile extends AppCompatActivity {
 
     }
 
+    /*
+    Function to update user data in Firebase
+     */
     private void updateUserData(String id, String uName, Uri uDP) {
 
         dbRefName = db.getReference("Users/" + userID).child("name");
@@ -237,7 +259,10 @@ public class EditProfile extends AppCompatActivity {
 
     }
 
-
+    /*
+    Built in function to perform action based on requestCode
+    Opens image gallery
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

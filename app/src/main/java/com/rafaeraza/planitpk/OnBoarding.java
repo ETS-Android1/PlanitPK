@@ -17,7 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class OnBoarding extends AppCompatActivity {
 
-    //Variables
+    /*
+    Declarations
+     */
     ViewPager viewPager;
     LinearLayout dotsLayout;
     SliderAdapter sliderAdapter;
@@ -33,6 +35,19 @@ public class OnBoarding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding);
 
+        /*
+        Hooks
+         */
+        viewPager = findViewById(R.id.slider);
+        dotsLayout = findViewById(R.id.dots);
+        nextBtn = findViewById(R.id.next_btn);
+        nextBtn.setAnimation(fadeIn);
+        letsGetStarted = findViewById(R.id.btn_get_started);
+        letsGetStarted.setVisibility(View.INVISIBLE);
+
+        /*
+        Firebase Auth existing user check
+         */
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
@@ -42,15 +57,12 @@ public class OnBoarding extends AppCompatActivity {
             finish();
         }
 
+        /*
+        On Click Listeners
+         */
+
         fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_slow);
 
-        //Hooks
-        viewPager = findViewById(R.id.slider);
-        dotsLayout = findViewById(R.id.dots);
-        nextBtn = findViewById(R.id.next_btn);
-        nextBtn.setAnimation(fadeIn);
-        letsGetStarted = findViewById(R.id.btn_get_started);
-        letsGetStarted.setVisibility(View.INVISIBLE);
         letsGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +109,8 @@ public class OnBoarding extends AppCompatActivity {
         });
     }
 
+    //=============================================================================================//
+    
     public void skip(View view) {
         startActivity(new Intent(this, Login.class));
         finish();

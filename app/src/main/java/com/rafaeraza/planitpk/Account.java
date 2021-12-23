@@ -3,15 +3,12 @@ package com.rafaeraza.planitpk;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.Objects;
 
@@ -33,11 +29,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Account extends AppCompatActivity {
 
+    /*
+     Declarations
+     */
     MaterialToolbar toolbar;
 
     TextView userFullName, userEmail;
     CircleImageView profileImg;
-    Button logoutBtn;
+    Button myTrips, myFavorites, myPhotoAlbums, appPreferences, logoutBtn;
 
     BottomNavigationView bottomNavigationView;
 
@@ -50,9 +49,25 @@ public class Account extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
+        /*
+         Hooks
+         */
         toolbar = findViewById(R.id.topAppBar_profile);
+
+        userFullName = findViewById(R.id.txtFullName);
+        userEmail = findViewById(R.id.txtEmail);
+
+        profileImg = findViewById(R.id.imgProfilePicture);
+
+        myTrips = findViewById(R.id.btnMyTrips);
+        myFavorites = findViewById(R.id.btnMyFavorites);
+        myPhotoAlbums = findViewById(R.id.btnMyPhotoAlbums);
+        appPreferences = findViewById(R.id.btnAppPreferences);
+
+        bottomNavigationView = findViewById(R.id.bottom_Navigation);
+
+        logoutBtn = findViewById(R.id.logoutBtn);
+
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -65,22 +80,29 @@ public class Account extends AppCompatActivity {
             }
         });
 
-        userFullName = findViewById(R.id.txtFullName);
-        userEmail = findViewById(R.id.txtEmail);
+        //        if (Objects.equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail(), "guest@guest.com")) {
+        //            signOutUser();
+        //        }
 
-        profileImg = findViewById(R.id.imgProfilePicture);
+        /*
+        On Click Listeners
+         */
+        myTrips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Account.this, MyTrips.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+            }
+        });
 
-        if (Objects.equals(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail(), "guest@guest.com")) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(Account.this, SignUp.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
-            finish();
-        }
+        myFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Account.this, MyFavorites.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+            }
+        });
 
-        showAllUserData();
-
-        logoutBtn = findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,8 +110,9 @@ public class Account extends AppCompatActivity {
             }
         });
 
-        // Bottom Nav Bar
-        bottomNavigationView = findViewById(R.id.bottom_Navigation);
+        /*
+         Bottom Nav Bar
+         */
         bottomNavigationView.setSelectedItemId(R.id.account);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -111,15 +134,27 @@ public class Account extends AppCompatActivity {
                 return false;
             }
         });
+
+        /*
+        Function Calls
+         */
+        showAllUserData();
     }
 
+    //=============================================================================================//
+    /*
+    Function to sign out current user and clear activity flags
+     */
     private void signOutUser() {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(Account.this, Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        startActivity(new Intent(Account.this, Login.class)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
     }
 
-
+    /*
+    Function to retrieve user details from Firebase and display in app
+     */
     private void showAllUserData() {
 
         mAuth = FirebaseAuth.getInstance();
@@ -168,7 +203,7 @@ public class Account extends AppCompatActivity {
 
     }
 
-    ;
+    /*
 
     @SuppressLint("DefaultLocale")
     public static String formatNumber(long count) {
@@ -176,4 +211,5 @@ public class Account extends AppCompatActivity {
         int exp = (int) (Math.log(count) / Math.log(1000));
         return String.format("%.1f %c", count / Math.pow(1000, exp), "kMBTPE".charAt(exp - 1));
     }
+     */
 }

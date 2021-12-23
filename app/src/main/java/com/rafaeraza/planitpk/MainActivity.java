@@ -12,7 +12,9 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Variables
+    /*
+    Declarations
+     */
     Animation fadeIn;
     ImageView imgLogo;
 
@@ -21,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Animation
+        /*
+        Animations
+         */
         fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_slow);
 
         imgLogo = findViewById(R.id.imgLogo);
@@ -29,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         int SPLASH_SCREEN_DELAY = 3000;
 
-        //Delay Handler
+        /*
+        Delay Handler
+         */
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

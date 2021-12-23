@@ -16,18 +16,25 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryHolder> {
-    // Class attributes
+    /*
+     Class attributes
+     */
     private ArrayList<CategoryHelperClass> categories;
-    private static Context context;
+    private Context context;
     private OnUserClickListener onUserClickListener;
 
-    // Constructor
+    /*
+     Constructor
+     */
     public CategoryAdapter(ArrayList<CategoryHelperClass> categories, Context context, OnUserClickListener onUserClickListener) {
         this.categories = categories;
         this.context = context;
         this.onUserClickListener = onUserClickListener;
     }
 
+    /*
+    Interface
+     */
     interface OnUserClickListener {
         void OnUserClicked(int position);
     }
@@ -53,7 +60,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categories.size();
     }
 
-    // View Holder
+    /*
+     View Holder
+     */
     class CategoryHolder extends RecyclerView.ViewHolder {
         ImageView categoryImg;
         TextView categoryName;

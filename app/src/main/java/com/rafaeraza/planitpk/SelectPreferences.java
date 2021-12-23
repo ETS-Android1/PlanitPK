@@ -25,13 +25,15 @@ import java.util.ArrayList;
 
 public class SelectPreferences extends AppCompatActivity {
 
+    /*
+    Declarations
+     */
     ImageView imgBackPress;
-    CardView punjabCV, sindhCV, balochCV, islamabadCV, kpkCV, gilgitCV, akCV, fataCV
-            ,hikingCV, cyclingCV, trekkingCV, skiingCV, rockClimbingCV, paraSailingCV
-            ,campingCV, boatingCV, sightseeingCV;
-    TextView txtPunjab, txtSindh, txtBaloch, txtIslamabad, txtKPK, txtGilgit, txtAK, txtFATA
-            ,txtHiking, txtCycling, txtTrekking, txtSkiing, txtRockClimbing, txtParaSailing
-            ,txtCamping, txtBoating, txtSightSeeing;
+    CardView punjabCV, sindhCV, balochCV, islamabadCV, kpkCV, gilgitCV, akCV, fataCV, hikingCV,
+            cyclingCV, trekkingCV, skiingCV, rockClimbingCV, paraSailingCV, campingCV, boatingCV, sightseeingCV;
+    TextView txtPunjab, txtSindh, txtBaloch, txtIslamabad, txtKPK, txtGilgit, txtAK, txtFATA,
+            txtHiking, txtCycling, txtTrekking, txtSkiing, txtRockClimbing, txtParaSailing,
+            txtCamping, txtBoating, txtSightSeeing;
     Button continueBtn;
 
     private ArrayList<String> preferredCategories, preferredDistricts, preferredActivities;
@@ -39,7 +41,6 @@ public class SelectPreferences extends AppCompatActivity {
 
     private PreferenceHelperClass preferencesList;
 
-    FirebaseDatabase rootNode;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users/" + user.getUid());
 
@@ -67,8 +68,7 @@ public class SelectPreferences extends AppCompatActivity {
         punjabCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! punjabCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !punjabCV.isSelected()) {
                     preferredDistricts.add(txtPunjab.getText().toString());
                     punjabCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     punjabCV.setSelected(true);
@@ -87,8 +87,7 @@ public class SelectPreferences extends AppCompatActivity {
         sindhCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! sindhCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !sindhCV.isSelected()) {
                     preferredDistricts.add(txtSindh.getText().toString());
                     sindhCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     sindhCV.setSelected(true);
@@ -107,8 +106,7 @@ public class SelectPreferences extends AppCompatActivity {
         balochCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! balochCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !balochCV.isSelected()) {
                     preferredDistricts.add(txtBaloch.getText().toString());
                     balochCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     balochCV.setSelected(true);
@@ -127,8 +125,7 @@ public class SelectPreferences extends AppCompatActivity {
         islamabadCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! islamabadCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !islamabadCV.isSelected()) {
                     preferredDistricts.add(txtIslamabad.getText().toString());
                     islamabadCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     islamabadCV.setSelected(true);
@@ -147,8 +144,7 @@ public class SelectPreferences extends AppCompatActivity {
         kpkCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! kpkCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !kpkCV.isSelected()) {
                     preferredDistricts.add(txtKPK.getText().toString());
                     kpkCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     kpkCV.setSelected(true);
@@ -167,8 +163,7 @@ public class SelectPreferences extends AppCompatActivity {
         gilgitCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! gilgitCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !gilgitCV.isSelected()) {
                     preferredDistricts.add(txtGilgit.getText().toString());
                     gilgitCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     gilgitCV.setSelected(true);
@@ -187,8 +182,7 @@ public class SelectPreferences extends AppCompatActivity {
         akCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! akCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !akCV.isSelected()) {
                     preferredDistricts.add(txtAK.getText().toString());
                     akCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     akCV.setSelected(true);
@@ -207,8 +201,7 @@ public class SelectPreferences extends AppCompatActivity {
         fataCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredDistricts.size() <= 7 && ! fataCV.isSelected())
-                {
+                if (preferredDistricts.size() <= 7 && !fataCV.isSelected()) {
                     preferredDistricts.add(txtFATA.getText().toString());
                     fataCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     fataCV.setSelected(true);
@@ -227,8 +220,7 @@ public class SelectPreferences extends AppCompatActivity {
         hikingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! hikingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !hikingCV.isSelected()) {
                     preferredActivities.add(txtHiking.getText().toString());
                     hikingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     hikingCV.setSelected(true);
@@ -247,8 +239,7 @@ public class SelectPreferences extends AppCompatActivity {
         cyclingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! cyclingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !cyclingCV.isSelected()) {
                     preferredActivities.add(txtCycling.getText().toString());
                     cyclingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     cyclingCV.setSelected(true);
@@ -267,8 +258,7 @@ public class SelectPreferences extends AppCompatActivity {
         trekkingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! trekkingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !trekkingCV.isSelected()) {
                     preferredActivities.add(txtTrekking.getText().toString());
                     trekkingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     trekkingCV.setSelected(true);
@@ -287,8 +277,7 @@ public class SelectPreferences extends AppCompatActivity {
         skiingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! skiingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !skiingCV.isSelected()) {
                     preferredActivities.add(txtSkiing.getText().toString());
                     skiingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     skiingCV.setSelected(true);
@@ -307,8 +296,7 @@ public class SelectPreferences extends AppCompatActivity {
         rockClimbingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! rockClimbingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !rockClimbingCV.isSelected()) {
                     preferredActivities.add(txtRockClimbing.getText().toString());
                     rockClimbingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     rockClimbingCV.setSelected(true);
@@ -327,8 +315,7 @@ public class SelectPreferences extends AppCompatActivity {
         paraSailingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! paraSailingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !paraSailingCV.isSelected()) {
                     preferredActivities.add(txtParaSailing.getText().toString());
                     paraSailingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     paraSailingCV.setSelected(true);
@@ -347,8 +334,7 @@ public class SelectPreferences extends AppCompatActivity {
         campingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! campingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !campingCV.isSelected()) {
                     preferredActivities.add(txtCamping.getText().toString());
                     campingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     campingCV.setSelected(true);
@@ -367,8 +353,7 @@ public class SelectPreferences extends AppCompatActivity {
         boatingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! boatingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !boatingCV.isSelected()) {
                     preferredActivities.add(txtBoating.getText().toString());
                     boatingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     boatingCV.setSelected(true);
@@ -387,8 +372,7 @@ public class SelectPreferences extends AppCompatActivity {
         sightseeingCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (preferredActivities.size() <= 8 && ! sightseeingCV.isSelected())
-                {
+                if (preferredActivities.size() <= 8 && !sightseeingCV.isSelected()) {
                     preferredActivities.add(txtSightSeeing.getText().toString());
                     sightseeingCV.setCardBackgroundColor(getResources().getColor(R.color.theme_green));
                     sightseeingCV.setSelected(true);
@@ -415,6 +399,10 @@ public class SelectPreferences extends AppCompatActivity {
         });
     }
 
+    //=============================================================================================//
+    /*
+    Function to set user preferences in Firebase
+     */
     private void setUserPreferences(View view) {
         reference.child("preferences").setValue(preferencesList).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -431,7 +419,7 @@ public class SelectPreferences extends AppCompatActivity {
                             startActivity(new Intent(SelectPreferences.this, Explore.class));
                             finish();
                         }
-                    },3000);
+                    }, 3000);
                 } else {
                     Toast.makeText(SelectPreferences.this, "Failed to set preferences!", Toast.LENGTH_LONG).show();
                 }
@@ -439,6 +427,9 @@ public class SelectPreferences extends AppCompatActivity {
         });
     }
 
+    /*
+    Utility function to provide skip functionality
+     */
     public void skip(View view) {
         startActivity(new Intent(this, Explore.class));
         finish();

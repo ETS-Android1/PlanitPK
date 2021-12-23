@@ -1,6 +1,7 @@
 package com.rafaeraza.planitpk;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +31,9 @@ import java.util.Objects;
 
 public class LocationDetails extends AppCompatActivity implements RatingDialog.RatingDialogListener {
 
-    //Variables
+    /*
+    Declarations
+     */
     ViewPager viewPager;
     LinearLayout dotsLayout;
     LocationImagesSliderAdapter sliderAdapter;
@@ -38,8 +42,8 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
     int currentPos;
 
     ImageView imgBackPress, favoriteLocation;
-    TextView txtLocationName, txtLocationCategory, txtLocationDescription, txtLocationRating
-            ,txtUserRating;
+    TextView txtLocationName, txtLocationCategory, txtLocationDescription, txtLocationRating,
+            txtUserRating, txtTotalRating;
     Button btnAddToTrip, btnRateLocation;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -52,13 +56,31 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_details);
 
+        /*
+        Hooks
+         */
         String currLocation = getIntent().getStringExtra("location_name");
         favoriteLocation = findViewById(R.id.favoriteLocation);
+        imgBackPress = findViewById(R.id.backPress);
+        btnAddToTrip = findViewById(R.id.btnAddToTrip);
+        btnRateLocation = findViewById(R.id.btnRateLocation);
 
+        viewPager = findViewById(R.id.slider);
+        dotsLayout = findViewById(R.id.dots);
+        txtLocationName = findViewById(R.id.txtLocationName);
+        txtLocationCategory = findViewById(R.id.txtlocationCategory);
+        txtLocationDescription = findViewById(R.id.txtlocationDesc);
+        txtLocationRating = findViewById(R.id.txtLocationRating);
+        txtUserRating = findViewById(R.id.txtUserRating);
+        txtTotalRating = findViewById(R.id.txtTotalRatings);
+
+        /*
+        Value Event Listener
+         */
         currUserRef.child("preferences").child("favorites").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     if (Objects.equals(dataSnapshot.getValue(), currLocation)) {
                         favoriteLocation.setImageResource(R.drawable.ic_baseline_favorite_24);
                         favoriteLocation.setSelected(true);
@@ -72,7 +94,9 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
             }
         });
 
-        imgBackPress = findViewById(R.id.backPress);
+        /*
+        On Click Listeners
+         */
         imgBackPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +150,7 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Removed from favorites", Toast.LENGTH_SHORT).show();
+                                currUserRef.child("preferences").child("favorites").setValue("");
                             } else {
                                 Toast.makeText(getApplicationContext(), "Failed to set preferences!", Toast.LENGTH_LONG).show();
                             }
@@ -135,7 +160,7 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
             }
         });
 
-        btnAddToTrip = findViewById(R.id.btnAddToTrip);
+
         btnAddToTrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,7 +168,7 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
             }
         });
 
-        btnRateLocation = findViewById(R.id.btnRateLocation);
+
         btnRateLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,14 +178,9 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
 
         fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_slow);
 
-        //Hooks
-        viewPager = findViewById(R.id.slider);
-        dotsLayout = findViewById(R.id.dots);
-        txtLocationName = findViewById(R.id.txtLocationName);
-        txtLocationCategory = findViewById(R.id.txtlocationCategory);
-        txtLocationDescription = findViewById(R.id.txtlocationDesc);
-        txtLocationRating = findViewById(R.id.txtLocationRating);
-        txtUserRating = findViewById(R.id.txtUserRating);
+        /*
+        Receive Intents
+         */
 
         String name = getIntent().getStringExtra("location_name");
         txtLocationName.setText(name);
@@ -168,9 +188,9 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
         txtLocationCategory.setText(category);
         String description = getIntent().getStringExtra("location_description");
         txtLocationDescription.setText(description);
-        String rating = getIntent().getStringExtra("location_rating");
-        if (!rating.isEmpty()) {
-            txtLocationRating.setText(rating);
+        double rating = getIntent().getDoubleExtra("location_rating", 0);
+        if (!(rating == 0)) {
+            txtLocationRating.setText(String.valueOf(rating));
         } else {
             txtLocationRating.setText("-");
         }
@@ -178,32 +198,36 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
         currUserRef.child("preferences").child("rated_locations")
                 .child(currLocation)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (Objects.equals(snapshot.child("locationName").getValue(String.class), currLocation)) {
-                        String userDBRating = (Objects.requireNonNull(snapshot.child("userRating").getValue(Integer.class))).toString();
-                        txtUserRating.setText(userDBRating);
-                    } else {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (Objects.equals(snapshot.child("locationName").getValue(String.class), currLocation)) {
+                            String userDBRating = (Objects.requireNonNull(snapshot.child("userRating").getValue(Integer.class))).toString();
+                            txtUserRating.setText(userDBRating + ".0");
+                        } else {
+                            txtUserRating.setText("-");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(LocationDetails.this, "Database error", Toast.LENGTH_SHORT).show();
                         txtUserRating.setText("-");
                     }
-                }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(LocationDetails.this, "Database error", Toast.LENGTH_SHORT).show();
-                txtUserRating.setText("-");
-            }
-        });
+                });
 
         String img1 = getIntent().getStringExtra("img1");
         String img2 = getIntent().getStringExtra("img2");
         String img3 = getIntent().getStringExtra("img3");
 
-        //Call adapter
+        /*
+        Call adapter
+         */
         sliderAdapter = new LocationImagesSliderAdapter(this, img1, img2, img3);
         viewPager.setAdapter(sliderAdapter);
 
-        //Dots
+        /*
+        Dots
+         */
         addDots(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -224,15 +248,25 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
         });
     }
 
+    //============================================================================================//
+    /*
+    Function to call rating dialog box
+     */
     private void callRatingDialog() {
         RatingDialog ratingDialog = new RatingDialog();
         ratingDialog.show(getSupportFragmentManager(), "Rating Dialog");
     }
 
+    /*
+    Function to send data via Intent
+     */
     public String sendLocationName() {
         return getIntent().getStringExtra("location_name");
     }
 
+    /*
+    Function to add dots to viewpager
+     */
     private void addDots(int position) {
 
         dots = new TextView[3];
@@ -252,6 +286,9 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
 
     }
 
+    /*
+    Function to set user rating
+     */
     @Override
     public void setRating(int newRating) {
         String currLocation = txtLocationName.getText().toString();
@@ -275,13 +312,23 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
                 .child("rating").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (Objects.requireNonNull(snapshot.getValue()).toString().isEmpty()) {
-                    reference.child(currLocation).child("rating").setValue(String.valueOf(newRating));
-                    Toast.makeText(LocationDetails.this, "Rating added!", Toast.LENGTH_SHORT).show();
+                double dbRating = Objects.requireNonNull(snapshot.getValue(Double.class));
+                double updatedRating = 0;
+                if (dbRating != 0) {
+                    updatedRating = round((dbRating + newRating) / 2, 1);
+                    double finalUpdatedRating = updatedRating;
+                    reference.child(currLocation).child("rating").setValue(updatedRating).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                txtLocationRating.setText(String.valueOf(finalUpdatedRating));
+                            }
+                        }
+                    });
                 } else {
-                    Toast.makeText(LocationDetails.this, "Already rated!", Toast.LENGTH_SHORT).show();
+                    reference.child(currLocation).child("rating").setValue(newRating);
                 }
+
             }
 
             @Override
@@ -291,7 +338,10 @@ public class LocationDetails extends AppCompatActivity implements RatingDialog.R
         });
     }
 
-    private static double round (double value, int precision) {
+    /*
+    Helper function to round double to specified decimal places
+     */
+    private static double round(double value, int precision) {
         int scale = (int) Math.pow(10, precision);
         return (double) Math.round(value * scale) / scale;
     }

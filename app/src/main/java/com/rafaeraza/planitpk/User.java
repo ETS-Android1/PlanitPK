@@ -3,6 +3,9 @@ package com.rafaeraza.planitpk;
 public class User {
     String name, email, password, preferences, profilePicture;
 
+    /*
+    Constructor
+     */
     public User() {
     }
 
@@ -14,6 +17,9 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
+    /*
+    Getters and Setters
+     */
     public String getName() {
         return name;
     }

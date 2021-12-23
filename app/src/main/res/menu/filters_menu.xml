@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filter_All"
+        android:title="All" />
+
+    <item
+        android:id="@+id/filter_Punjab"
+        android:title="Punjab" />
+
+    <item
+        android:id="@+id/filter_Sindh"
+        android:title="Sindh" />
+
+    <item
+        android:id="@+id/filter_Balochistan"
+        android:title="Balochistan" />
+
+    <item
+        android:id="@+id/filter_Islamabad"
+        android:title="Islamabad" />
+
+    <item
+        android:id="@+id/filter_KPK"
+        android:title="KPK" />
+
+    <item
+        android:id="@+id/filter_Gilgit"
+        android:title="Gilgit-Baltistan" />
+
+    <item
+        android:id="@+id/filter_Kashmir"
+        android:title="Azad Kashmir" />
+
+    <item
+        android:id="@+id/filter_Fata"
+        android:title="FATA" />
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Coastal"-->
+<!--        android:title="Coastal" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Deserts"-->
+<!--        android:title="Deserts" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Forts"-->
+<!--        android:title="Forts" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Hill_Stations"-->
+<!--        android:title="Hill Stations" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Islands"-->
+<!--        android:title="Islands" />-->
+
+<!--    <item android:id="@+id/filter_Lakes"-->
+<!--        android:title="Lakes"/>-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Mines"-->
+<!--        android:title="Mines" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Monuments"-->
+<!--        android:title="Monuments" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Mosques"-->
+<!--        android:title="Mosques" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Mountainous"-->
+<!--        android:title="Mountainous" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Museums"-->
+<!--        android:title="Museums" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_National_Parks"-->
+<!--        android:title="National Parks" />-->
+
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Temples"-->
+<!--        android:title="Temples" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Valleys"-->
+<!--        android:title="Valleys" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/filter_Waterfalls"-->
+<!--        android:title="Waterfalls" />-->
+
+</menu>

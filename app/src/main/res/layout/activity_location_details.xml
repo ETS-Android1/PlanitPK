@@ -119,7 +119,7 @@
 
         <RelativeLayout
             android:id="@+id/relativeLayout4"
-            android:layout_width="80dp"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="5dp"
@@ -127,7 +127,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/locationRatingCV"
-                android:layout_width="70dp"
+                android:layout_width="75dp"
                 android:layout_height="42dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginEnd="10dp"
@@ -138,7 +138,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="3">
 
                     <ImageView
                         android:id="@+id/locationRating"
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:layout_marginTop="3dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:fontFamily="@font/poppins"
                         android:includeFontPadding="false"
                         android:text=""
@@ -179,14 +179,14 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/poppins"
-                android:text="147,575"
+                android:text="1,475 Reviews"
                 android:textAlignment="center"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="12sp" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/userRatingCV"
-                android:layout_width="70dp"
+                android:layout_width="75dp"
                 android:layout_height="42dp"
                 android:layout_below="@id/txtTotalRatings"
                 android:layout_centerHorizontal="true"
@@ -197,7 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="3">
 
                     <ImageView
                         android:id="@+id/userRating"
@@ -218,7 +218,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:layout_marginTop="3dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:fontFamily="@font/poppins"
                         android:includeFontPadding="false"
                         android:text=""
@@ -299,8 +299,9 @@
                 android:background="@drawable/round_corners"
                 android:drawableEnd="@drawable/ic_baseline_add_24"
                 android:text="Add To Trip"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnRateLocation"
@@ -311,8 +312,9 @@
                 android:background="@drawable/round_corners"
                 android:drawableEnd="@drawable/ic_baseline_edit_location_alt_24"
                 android:text="Rate"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

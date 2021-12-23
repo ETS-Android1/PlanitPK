@@ -29,7 +29,7 @@ public class LocationImagesSliderAdapter extends PagerAdapter {
     }
 
     void initializeImages(String imgLink1, String imgLink2, String imgLink3) {
-        images = new String[] {
+        images = new String[]{
                 imgLink1,
                 imgLink2,
                 imgLink3

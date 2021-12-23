@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="3"
-        android:padding="7dp">
+        android:padding="7dp"
+        android:weightSum="3">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -34,15 +34,15 @@
             android:id="@+id/categoryName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:fontFamily="@font/bungee"
             android:hint="Category Name"
+            android:justificationMode="inter_word"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:justificationMode="inter_word"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

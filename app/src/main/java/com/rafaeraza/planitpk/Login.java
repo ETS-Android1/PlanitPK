@@ -20,7 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
-    //Variables
+    /*
+    Declarations
+     */
     TextInputLayout inputEmail, inputPassword;
     TextView forgotPwd, signUpHint, guestText;
     Button loginBtn;
@@ -32,23 +34,13 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /*
+        Hooks
+         */
+
         forgotPwd = findViewById(R.id.txtForgotPassword);
-        String htmlFPString = "<u>Forgot Password?</u>";
-        forgotPwd.setText(Html.fromHtml(htmlFPString));
-
         signUpHint = findViewById(R.id.txtSignUpHint);
-        String htmlSUHString = "<u>New User? Sign Up</u>";
-        signUpHint.setText(Html.fromHtml(htmlSUHString));
-
         guestText = findViewById(R.id.txtGuest);
-        String htmlString="<u>Continue as GUEST</u>";
-        guestText.setText(Html.fromHtml(htmlString));
-        guestText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginAsGuest(view);
-            }
-        });
 
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
@@ -57,6 +49,33 @@ public class Login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        /*
+        On Create Data Setters
+         */
+        String htmlFPString = "<u>Forgot Password?</u>";
+        forgotPwd.setText(Html.fromHtml(htmlFPString));
+
+
+        String htmlSUHString = "<u>New User? Sign Up</u>";
+        signUpHint.setText(Html.fromHtml(htmlSUHString));
+
+
+        String htmlString = "<u>Continue as GUEST</u>";
+        guestText.setText(Html.fromHtml(htmlString));
+
+        /*
+        On Click Listeners
+         */
+        guestText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginAsGuest(view);
+            }
+        });
+
+        /*
+        Firebase Auth existing user check
+         */
         if (mAuth.getCurrentUser() != null) {
             Intent intent = new Intent(Login.this, Explore.class);
             startActivity(intent);
@@ -64,6 +83,10 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    //=============================================================================================//
+    /*
+    Function to start Sign Up activity
+     */
     public void callSignUp(View view) {
         TextView txtSignUpHint = findViewById(R.id.txtSignUpHint);
 
@@ -72,7 +95,9 @@ public class Login extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }
 
-
+    /*
+    Function to start Forgot Password activity
+     */
     public void callForgotPassword(View view) {
         TextView txtForgotPassword = findViewById(R.id.txtForgotPassword);
 
@@ -81,6 +106,9 @@ public class Login extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }
 
+    /*
+    Function to validate email
+     */
     private Boolean validateEmail() {
         String val = inputEmail.getEditText().getText().toString();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -98,6 +126,9 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /*
+    Function to validate password
+     */
     private Boolean validatePassword() {
         String val = inputPassword.getEditText().getText().toString();
         String passwordVal = "^" +
@@ -123,6 +154,9 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /*
+    Function to Sign In user using Firebase Authentication
+     */
     public void loginUser(View view) {
 
         if (!validatePassword() | !validateEmail()) {
@@ -150,6 +184,9 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    /*
+    Function to Sign In user as guest
+     */
     public void loginAsGuest(View view) {
 
         mAuth.signInWithEmailAndPassword("guest@guest.com", "guest@123").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -169,6 +206,9 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    /*
+    Utility function to provide skip functionality
+     */
     public void skip(View view) {
         startActivity(new Intent(this, Explore.class));
         finish();

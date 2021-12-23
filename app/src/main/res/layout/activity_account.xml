@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Account">
@@ -16,10 +15,10 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar_profile"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            android:background="@color/green_primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/edit_profile_menu"/>
+            android:background="@color/green_primary"
+            app:menu="@menu/edit_profile_menu" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -88,6 +87,7 @@
                 android:weightSum="6">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMyTrips"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -113,6 +113,7 @@
                     android:backgroundTint="@color/cardview_dark_background" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMyFavorites"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -138,6 +139,7 @@
                     android:backgroundTint="@color/cardview_dark_background" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMyPhotoAlbums"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -163,6 +165,7 @@
                     android:backgroundTint="@color/cardview_dark_background" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAppPreferences"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
